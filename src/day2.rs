@@ -56,18 +56,8 @@ pub fn solve_day2_part2(input: &Vec<Pass>) -> usize {
     input
         .iter()
         .filter(|p| {
-            let firstmatch = p
-                .pass
-                .chars()
-                .nth(usize::from(p.min_freq - 1))
-                .unwrap_or(' ')
-                == p.ch;
-            let secondmatch = p
-                .pass
-                .chars()
-                .nth(usize::from(p.max_freq - 1))
-                .unwrap_or(' ')
-                == p.ch;
+            let firstmatch = p.pass.chars().nth(p.min_freq - 1).unwrap_or(' ') == p.ch;
+            let secondmatch = p.pass.chars().nth(p.max_freq - 1).unwrap_or(' ') == p.ch;
             firstmatch ^ secondmatch
         })
         .count()
