@@ -4,8 +4,8 @@ use regex::Regex;
 #[derive(Debug, PartialEq)]
 pub struct Pass {
     ch: char,
-    min_freq: u8,
-    max_freq: u8,
+    min_freq: usize,
+    max_freq: usize,
     pass: String,
 }
 
@@ -23,8 +23,12 @@ pub fn input_generator(input: &str) -> Vec<Pass> {
                 ch: caps
                     .get(3)
                     .map_or(' ', |m| m.as_str().chars().next().unwrap()),
-                min_freq: caps.get(1).map_or(0, |m| m.as_str().parse::<u8>().unwrap()),
-                max_freq: caps.get(2).map_or(0, |m| m.as_str().parse::<u8>().unwrap()),
+                min_freq: caps
+                    .get(1)
+                    .map_or(0, |m| m.as_str().parse::<usize>().unwrap()),
+                max_freq: caps
+                    .get(2)
+                    .map_or(0, |m| m.as_str().parse::<usize>().unwrap()),
                 pass: caps
                     .get(4)
                     .map_or(String::new(), |m| String::from(m.as_str())),
@@ -34,57 +38,39 @@ pub fn input_generator(input: &str) -> Vec<Pass> {
 }
 
 #[aoc(day2, part1)]
-pub fn solve_day2_part1(input: &Vec<Pass>) -> u64 {
+pub fn solve_day2_part1(input: &Vec<Pass>) -> usize {
     input
         .iter()
-        .map(|p| {
-            let count: u8 = p
+        .filter(|p| {
+            let count = p
                 .pass
                 .char_indices()
                 .fold(0, |acc, c| if c.1 == p.ch { acc + 1 } else { acc });
-            if count >= p.min_freq && count <= p.max_freq {
-                1
-            } else {
-                0
-            }
+            count >= p.min_freq && count <= p.max_freq
         })
-        .sum::<u64>()
+        .count()
 }
 
 #[aoc(day2, part2)]
-pub fn solve_day2_part2(input: &Vec<Pass>) -> u64 {
+pub fn solve_day2_part2(input: &Vec<Pass>) -> usize {
     input
         .iter()
-        .map(|p| {
-            if (p
+        .filter(|p| {
+            let firstmatch = p
                 .pass
                 .chars()
                 .nth(usize::from(p.min_freq - 1))
                 .unwrap_or(' ')
-                == p.ch
-                && p.pass
-                    .chars()
-                    .nth(usize::from(p.max_freq - 1))
-                    .unwrap_or(' ')
-                    != p.ch)
-                || (p
-                    .pass
-                    .chars()
-                    .nth(usize::from(p.min_freq - 1))
-                    .unwrap_or(' ')
-                    != p.ch
-                    && p.pass
-                        .chars()
-                        .nth(usize::from(p.max_freq - 1))
-                        .unwrap_or(' ')
-                        == p.ch)
-            {
-                1
-            } else {
-                0
-            }
+                == p.ch;
+            let secondmatch = p
+                .pass
+                .chars()
+                .nth(usize::from(p.max_freq - 1))
+                .unwrap_or(' ')
+                == p.ch;
+            firstmatch ^ secondmatch
         })
-        .sum::<u64>()
+        .count()
 }
 
 #[cfg(test)]
