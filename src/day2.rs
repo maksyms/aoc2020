@@ -44,8 +44,8 @@ pub fn solve_day2_part1(input: &Vec<Pass>) -> usize {
         .filter(|p| {
             let count = p
                 .pass
-                .char_indices()
-                .fold(0, |acc, c| if c.1 == p.ch { acc + 1 } else { acc });
+                .chars()
+                .fold(0, |acc, c| if c == p.ch { acc + 1 } else { acc });
             count >= p.min_freq && count <= p.max_freq
         })
         .count()
