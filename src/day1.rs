@@ -10,7 +10,7 @@ pub fn input_generator(input: &str) -> Vec<u64> {
 }
 
 pub fn solve_day1_general(input: &Vec<u64>, sum: u64) -> u64 {
-    let mut hm: HashMap<u64, u64> = HashMap::new();
+    let mut hm: HashMap<u64, u64> = HashMap::with_capacity(input.len());
     for &i in input.iter() {
         if i >= sum {
             continue;
