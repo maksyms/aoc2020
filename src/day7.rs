@@ -74,7 +74,6 @@ pub fn part1(input: &(Graph<String, usize>, HashMap<String, NodeIndex>)) -> usiz
     let (g, hm) = input;
     let bagidx = hm["shiny gold"];
     let res = count_all_containing(g, bagidx);
-    //eprintln!("hashset: {:?}", res);
     res.len()
 }
 
