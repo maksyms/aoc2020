@@ -8,13 +8,6 @@ pub fn input_generator(input: &str) -> Vec<u64> {
         .collect::<Vec<u64>>()
 }
 
-fn check_element(el: u64, v: &[u64; 25]) -> u64 {
-    v.iter().fold(0, |acc, n| {
-        //lala
-        acc
-    })
-}
-
 // A C-way of doing things
 pub fn solver(input: &Vec<u64>, preamble: usize) -> u64 {
     // start from the 6th element
@@ -64,12 +57,15 @@ pub fn solver2(input: &Vec<u64>, preamble: usize) -> u64 {
     let mut right: usize = left + 1;
     let mut found = false;
 
-    while left < right && right < input.len() && !found {
-        let sum: u64 = input[left..=right].iter().sum();
+    let mut sum: u64 = input[0] + input[1];
 
+    while left < right && right < input.len() && !found {
+        //let sum: u64 = input[left..=right].iter().sum(); // 61.7 microseconds
         if sum < num {
             right += 1;
+            sum += input[right];
         } else if sum > num {
+            sum -= input[left];
             left += 1;
         } else {
             found = true;
