@@ -49,14 +49,10 @@ pub fn part2(input: &Vec<u8>) -> u128 {
 
                 let idx = n as usize;
 
-                if n >= 1 {
-                    acc[idx] += acc[idx - 1];
-                }
-                if n >= 2 {
-                    acc[idx] += acc[idx - 2];
-                }
-                if n >= 3 {
-                    acc[idx] += acc[idx - 3];
+                for &i in [1 as usize, 2, 3].iter() {
+                    if idx >= i {
+                        acc[idx] += acc[idx - i];
+                    }
                 }
 
                 acc
