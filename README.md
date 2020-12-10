@@ -1,5 +1,7 @@
 # Advent Of Code 2020 repo in Rust
 
+![GitHub last commit](https://img.shields.io/github/last-commit/maksyms/aoc2020)
+
 ## [Advent Of Code 2020 Fun](https://adventofcode.com/2020)
 
 If you do not know what Advent Of Code is, please follow [this](https://adventofcode.com/) link and read up.
