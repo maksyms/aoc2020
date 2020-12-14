@@ -4,17 +4,20 @@ use aoc_runner_derive::{aoc, aoc_generator};
 
 #[aoc_generator(dayX)]
 pub fn input_generator(input: &str) -> Vec<String> {
-    vec![String::from("1"), String::from("2"), String::from("3")]
+    input
+        .lines()
+        .map(|s| String::from(s))
+        .collect::<Vec<String>>()
 }
 
 #[aoc(dayX, part1)]
 pub fn part1(input: &Vec<String>) -> usize {
-    0
+    input.len()
 }
 
 #[aoc(dayX, part2)]
 pub fn part2(input: &Vec<String>) -> usize {
-    0
+    input.len()
 }
 
 #[cfg(test)]
