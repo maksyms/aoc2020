@@ -21,18 +21,16 @@ pub fn solver(limit: usize, input: &HashMap<usize, usize>) -> usize {
        let mut nowspoken = 0;
     */
 
-    (input.len() + 1..limit)
-        .fold((0usize, 0usize), |mut acc, count| {
-            acc.0 = acc.1;
-            if let Some(&val) = hm.get(&acc.0) {
-                acc.1 = count - val;
-            } else {
-                acc.1 = 0;
-            }
-            hm.insert(acc.0, count);
-            acc
-        })
-        .1
+    (input.len() + 1..limit).fold(0, |spoken, count| match hm.get(&spoken) {
+        Some(&val) => {
+            hm.insert(spoken, count);
+            count - val
+        }
+        None => {
+            hm.insert(spoken, count);
+            0
+        }
+    })
 
     /*     while counter < limit {
            lastspoken = nowspoken;
