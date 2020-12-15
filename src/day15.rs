@@ -14,25 +14,39 @@ pub fn input_generator(input: &str) -> HashMap<usize, usize> {
 }
 
 pub fn solver(limit: usize, input: &HashMap<usize, usize>) -> usize {
-    let mut counter = input.len();
     let mut hm = input.clone();
-    let mut lastspoken = 0;
-    let mut nowspoken = 0;
 
-    // we take lastspoken and update it, while updating
+    /*     let mut counter = input.len();
+       let mut lastspoken = 0;
+       let mut nowspoken = 0;
+    */
 
-    while counter < limit {
-        lastspoken = nowspoken;
-        counter += 1;
+    (input.len() + 1..limit)
+        .fold((0usize, 0usize), |mut acc, count| {
+            acc.0 = acc.1;
+            if let Some(&val) = hm.get(&acc.0) {
+                acc.1 = count - val;
+            } else {
+                acc.1 = 0;
+            }
+            hm.insert(acc.0, count);
+            acc
+        })
+        .1
 
-        if let Some(&val) = hm.get(&lastspoken) {
-            nowspoken = counter - val;
-        } else {
-            nowspoken = 0;
-        }
-        hm.insert(lastspoken, counter);
-    }
-    lastspoken
+    /*     while counter < limit {
+           lastspoken = nowspoken;
+           counter += 1;
+
+           if let Some(&val) = hm.get(&lastspoken) {
+               nowspoken = counter - val;
+           } else {
+               nowspoken = 0;
+           }
+           hm.insert(lastspoken, counter);
+       }
+       lastspoken
+    */
 }
 
 #[aoc(day15, part1)]
