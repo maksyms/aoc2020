@@ -55,7 +55,7 @@ pub fn part2(input: &Vec<String>) -> usize {
             let val = caps.get(2).unwrap().as_str().parse::<usize>().unwrap();
             let bitdiff = mask.0 ^ mask.1;
             // we will need to write to 2^(Xes in the mask) addresses, which is the number of 1s in bitdiff
-            for num_of_bits in 0..2usize.pow(bitdiff.count_ones()) {
+            for num_of_addrs in 0..2usize.pow(bitdiff.count_ones()) {
                 // Calculate the address to write this time by flipping the relevant bits in the address, 2^bitdiff.count_ones() times
                 let addr_to_write = (0..bitdiff.count_ones() as usize)
                     .fold(
@@ -65,13 +65,12 @@ pub fn part2(input: &Vec<String>) -> usize {
                                 temp_addr
                                     ^ bitdiff
                                         & (temp_bitdiff
-                                            ^ (temp_bitdiff - (num_of_bits >> ones_counter & 1))),
+                                            ^ (temp_bitdiff - (num_of_addrs >> ones_counter & 1))),
                                 temp_bitdiff & (temp_bitdiff - 1),
                             )
                         },
                     )
                     .0;
-                eprintln!("addr: {:b}", addr_to_write);
                 mem.insert(addr_to_write, val);
             }
         } else {
