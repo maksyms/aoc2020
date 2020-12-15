@@ -16,9 +16,7 @@ pub fn input_generator(input: &str) -> HashMap<usize, usize> {
 pub fn solver(limit: usize, input: &HashMap<usize, usize>) -> usize {
     let mut counter = input.len();
     let mut hm = input.clone();
-    let mut lastspoken = *input
-        .get(input.keys().find(|&k| input[k] == counter).unwrap())
-        .unwrap();
+    let mut lastspoken = 0;
     let mut nowspoken = 0;
 
     // we take lastspoken and update it, while updating
