@@ -11,3 +11,11 @@ This repository contains solutions for AOC2020 in Rust. You can read the tasks t
 Do either `cargo run` or, alternatively, `cargo aoc`, if you are set up for Advent Of Code 2020 correctly.
 
 For setting up `cargo aoc` see [here](https://github.com/gobanos/cargo-aoc)
+
+## My Goals
+
+1. I am practicing my (very basic) Rust knowledge.
+2. I am figuring out all solutions myself, without any exceptions and without any peeking into other people's solutions.
+3. I am practically reminding myself of the applications of basic Computer Science approaches.
+4. I am getting practice using the rich Rust ecosystem - so no re-implementing the basic CS algos, but rather using the existing Rust implementations whenever possible.
+5. I am having fun!
