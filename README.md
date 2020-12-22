@@ -15,7 +15,7 @@ For setting up `cargo aoc` see [here](https://github.com/gobanos/cargo-aoc)
 ## My Goals
 
 1. I am practicing my (very basic) Rust knowledge.
-2. I am figuring out all solutions myself, without any exceptions and without any peeking into other people's solutions.
+2. I am figuring out and coding all the solutions myself, without any exceptions and without any peeking into other people's solutions.
 3. I am practically reminding myself of the applications of basic Computer Science approaches.
 4. I am getting practice using the rich Rust ecosystem - so no re-implementing the basic CS algos, but rather using the existing Rust implementations whenever possible.
 5. I am having fun!
