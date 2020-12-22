@@ -1,4 +1,4 @@
-#![feature(iterator_fold_self)]
+#![feature(deque_range)]
 use aoc_runner_derive::aoc_lib;
 
 pub mod day1;
