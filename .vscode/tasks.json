@@ -12,6 +12,17 @@
 				"isDefault": true
 			},
 			"label": "rust: cargo build"
+		},
+		{
+			"type": "cargo",
+			"label": "cargo test build",
+			"command": "test build",
+			"args": [
+				"--no-run"
+			],
+			"problemMatcher": [
+				"$rustc"
+			]
 		}
 	]
 }

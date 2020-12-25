@@ -7,11 +7,29 @@
     {
       "type": "lldb",
       "request": "launch",
-      "name": "Debug",
+      "name": "Default Debugger",
       "program": "${workspaceFolder}/target/debug/aoc2020",
       "args": [],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "rust: cargo build"
+    },
+    {
+      "name": "Test Debugger",
+      "type": "lldb",
+      "request": "launch",
+      "cargo": {
+        "filter": {
+          "kind": "lib"
+        },
+        "args": [
+          "test",
+          "--lib",
+          "--all-features",
+          "--no-run"
+        ]
+      },
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "cargo test build",
     }
   ]
 }
